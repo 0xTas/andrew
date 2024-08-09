@@ -2,7 +2,6 @@
 #![warn(missing_docs)]
 extern crate rusttype;
 extern crate walkdir;
-extern crate xdg;
 extern crate xml;
 
 #[macro_use]
@@ -103,9 +102,9 @@ impl<'a> Canvas<'a> {
                     let color_diff =
                         (color[3 - c] as isize - self.buffer[base + c] as isize) as f32 * alpha;
                     let new_color = (f32::from(self.buffer[base + c]) + color_diff) as u8;
-                    self.buffer[base + c] = new_color as u8;
+                    self.buffer[base + c] = new_color;
                 }
-                self.buffer[base + 3] = 255 as u8;
+                self.buffer[base + 3] = 255;
             }
         } else if color[0] == 255 {
             self.buffer[base] = color[0];
@@ -118,9 +117,9 @@ impl<'a> Canvas<'a> {
                 let color_diff =
                     (color[c] as isize - self.buffer[base + c] as isize) as f32 * alpha;
                 let new_color = (f32::from(self.buffer[base + c]) + color_diff) as u8;
-                self.buffer[base + c] = new_color as u8;
+                self.buffer[base + c] = new_color;
             }
-            self.buffer[base] = 255 as u8;
+            self.buffer[base] = 255;
         }
     }
 

@@ -95,7 +95,7 @@ impl Drawable for Line {
                                 as u8;
                         }
                     }
-                    canvas.draw_point(x as usize, y as usize, color)
+                    canvas.draw_point(x, y, color)
                 }
             }
         }
@@ -144,7 +144,7 @@ fn xiaolin_wu(mut x0: f32, mut y0: f32, mut x1: f32, mut y1: f32) -> Vec<(usize,
     let gradient = if dx == 0.0 {
         1.0
     } else {
-        dy as f32 / dx as f32
+        dy / dx
     };
 
     let mut intery = y0 + gradient;
@@ -154,13 +154,13 @@ fn xiaolin_wu(mut x0: f32, mut y0: f32, mut x1: f32, mut y1: f32) -> Vec<(usize,
         for x in x0 as usize + 1..=x1 as usize - 1 {
             points.push((intery as usize, x, 1.0 - intery.fract()));
             points.push((intery as usize + 1, x, intery.fract()));
-            intery = intery + gradient;
+            intery += gradient;
         }
     } else {
         for x in x0 as usize + 1..=x1 as usize - 1 {
             points.push((x, intery as usize, 1.0 - intery.fract()));
             points.push((x, intery as usize + 1, intery.fract()));
-            intery = intery + gradient;
+            intery += gradient;
         }
     }
     points

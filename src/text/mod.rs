@@ -1,6 +1,3 @@
-/// A module that contains functions and objects relating to fontconfig
-pub mod fontconfig;
-
 use rusttype::{point, Font, Scale, VMetrics};
 use std::fs::File;
 use std::io::Read;
